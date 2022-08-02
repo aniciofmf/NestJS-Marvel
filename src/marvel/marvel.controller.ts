@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { MarvelService } from './marvel.service';
 import { CreateCharacterDto } from './dto/create-character.dto';
@@ -16,6 +18,7 @@ export class MarvelController {
   constructor(private readonly marvelService: MarvelService) {}
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   create(@Body() createMarvelCharDto: CreateCharacterDto) {
     return this.marvelService.create(createMarvelCharDto);
   }
