@@ -1,15 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { MarvelService } from './marvel.service';
-import { CreateMarvelDto } from './dto/create-marvel.dto';
-import { UpdateMarvelDto } from './dto/update-marvel.dto';
+import { CreateCharacterDto } from './dto/create-character.dto';
+import { UpdateCharacterDto } from './dto/update-character.dto';
 
 @Controller('marvel')
 export class MarvelController {
   constructor(private readonly marvelService: MarvelService) {}
 
   @Post()
-  create(@Body() createMarvelDto: CreateMarvelDto) {
-    return this.marvelService.create(createMarvelDto);
+  create(@Body() createMarvelCharDto: CreateCharacterDto) {
+    return this.marvelService.create(createMarvelCharDto);
   }
 
   @Get()
@@ -23,8 +31,11 @@ export class MarvelController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMarvelDto: UpdateMarvelDto) {
-    return this.marvelService.update(+id, updateMarvelDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateMarvelCharDto: UpdateCharacterDto,
+  ) {
+    return this.marvelService.update(+id, updateMarvelCharDto);
   }
 
   @Delete(':id')

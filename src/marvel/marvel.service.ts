@@ -1,26 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMarvelDto } from './dto/create-marvel.dto';
-import { UpdateMarvelDto } from './dto/update-marvel.dto';
+import { CreateCharacterDto } from './dto/create-character.dto';
+import { UpdateCharacterDto } from './dto/update-character.dto';
 
 @Injectable()
 export class MarvelService {
-  create(createMarvelDto: CreateMarvelDto) {
-    return 'This action adds a new marvel';
+  create(createMarvelCharDto: CreateCharacterDto) {
+    createMarvelCharDto.name = createMarvelCharDto.name.toLowerCase();
+
+    return createMarvelCharDto;
   }
 
-  findAll() {
-    return `This action returns all marvel`;
+  findAll() {}
+
+  findOne(id: number) {}
+
+  update(id: number, updateMarvelCharDto: UpdateCharacterDto) {
+    return updateMarvelCharDto;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} marvel`;
-  }
-
-  update(id: number, updateMarvelDto: UpdateMarvelDto) {
-    return `This action updates a #${id} marvel`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} marvel`;
-  }
+  remove(id: number) {}
 }
