@@ -30,7 +30,7 @@ export class MarvelController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.marvelService.findOne(+id);
+    return this.marvelService.findOne(id);
   }
 
   @Patch(':id')
