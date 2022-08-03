@@ -38,11 +38,11 @@ export class MarvelController {
     @Param('id') id: string,
     @Body() updateMarvelCharDto: UpdateCharacterDto,
   ) {
-    return this.marvelService.update(+id, updateMarvelCharDto);
+    return this.marvelService.update(id, updateMarvelCharDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.marvelService.remove(+id);
+    return this.marvelService.remove(id);
   }
 }

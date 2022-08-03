@@ -48,9 +48,21 @@ export class MarvelService {
     return character;
   }
 
-  async update(id: number, updateMarvelCharDto: UpdateCharacterDto) {
-    return updateMarvelCharDto;
+  async update(id: string, updateMarvelCharDto: UpdateCharacterDto) {
+    let character = await this.findOne(id);
+
+    try {
+      if (updateMarvelCharDto.name) {
+        updateMarvelCharDto.name = updateMarvelCharDto.name.toLowerCase();
+      }
+
+      await character.updateOne(updateMarvelCharDto);
+
+      return { ...character.toJSON(), ...updateMarvelCharDto };
+    } catch (error) {
+      throw new BadRequestException('Your character could not be updated.');
+    }
   }
 
-  async remove(id: number) {}
+  async remove(id: string) {}
 }
