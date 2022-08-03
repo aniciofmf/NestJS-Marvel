@@ -16,7 +16,7 @@ export class MarvelService {
     private readonly characterModel: Model<Character>,
   ) {}
 
-  async create(createMarvelCharDto: CreateCharacterDto) {
+  async create(createMarvelCharDto: CreateCharacterDto): Promise<Character> {
     createMarvelCharDto.name = createMarvelCharDto.name.toLowerCase();
 
     try {
@@ -30,7 +30,7 @@ export class MarvelService {
 
   async findAll() {}
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<Character> {
     let character: Character;
 
     if (!isNaN(+id)) {
@@ -49,7 +49,7 @@ export class MarvelService {
   }
 
   async update(id: string, updateMarvelCharDto: UpdateCharacterDto) {
-    let character = await this.findOne(id);
+    let character: Character = await this.findOne(id);
 
     try {
       if (updateMarvelCharDto.name) {
