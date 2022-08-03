@@ -1,8 +1,9 @@
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { MarvelModule } from './marvel/marvel.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MarvelModule } from './marvel/marvel.module';
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/marvel'),
     MarvelModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],

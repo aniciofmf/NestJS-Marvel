@@ -64,5 +64,7 @@ export class MarvelService {
     }
   }
 
-  async remove(id: string) {}
+  async remove(id: string) {
+    await this.characterModel.deleteOne({ _id: id });
+  }
 }

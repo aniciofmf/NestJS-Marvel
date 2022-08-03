@@ -12,6 +12,7 @@ import {
 import { MarvelService } from './marvel.service';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
+import { MongoIdPipe } from '../common/pipes/mongo-id.pipe';
 
 @Controller('marvel')
 export class MarvelController {
@@ -42,7 +43,7 @@ export class MarvelController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', MongoIdPipe) id: string) {
     return this.marvelService.remove(id);
   }
 }
