@@ -22,6 +22,7 @@ async function bootstrap() {
     }),
   );
 
+  console.log(`running on ${port}`);
   await app.listen(port);
 }
 bootstrap();
