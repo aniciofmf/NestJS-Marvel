@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ICharacterResponse } from '../../dist/seed/interfaces/character-result';
+import { ICharacterResponse } from './interfaces/ICharacterResponse';
 import { Character } from '../marvel/entities/character.entity';
 import {
   MARVEL_ENDPOINT,

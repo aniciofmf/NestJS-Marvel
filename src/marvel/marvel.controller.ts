@@ -8,11 +8,13 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { MarvelService } from './marvel.service';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
 import { MongoIdPipe } from '../common/pipes/mongo-id.pipe';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Controller('marvel')
 export class MarvelController {
@@ -25,8 +27,8 @@ export class MarvelController {
   }
 
   @Get()
-  findAll() {
-    return this.marvelService.findAll();
+  findAll(@Query() paramsPagination: PaginationDto) {
+    return this.marvelService.findAll(paramsPagination);
   }
 
   @Get(':id')

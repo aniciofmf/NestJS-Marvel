@@ -8,6 +8,7 @@ import { isValidObjectId, Model } from 'mongoose';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
 import { Character } from './entities/character.entity';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Injectable()
 export class MarvelService {
@@ -17,7 +18,7 @@ export class MarvelService {
   ) {}
 
   async create(createMarvelCharDto: CreateCharacterDto): Promise<Character> {
-    //   createMarvelCharDto.name = createMarvelCharDto.name.toLowerCase();
+    createMarvelCharDto.name = createMarvelCharDto.name.toLowerCase();
 
     try {
       const character = await this.characterModel.create(createMarvelCharDto);
@@ -28,7 +29,16 @@ export class MarvelService {
     }
   }
 
-  async findAll() {}
+  async findAll(paramsPagination: PaginationDto) {
+    const { limit = 10, offset = 0 } = paramsPagination;
+
+    return this.characterModel
+      .find()
+      .limit(limit)
+      .skip(offset)
+      .sort({ number: 1 })
+      .select('-__v');
+  }
 
   async findOne(id: string): Promise<Character> {
     let character: Character;
