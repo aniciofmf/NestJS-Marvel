@@ -24,7 +24,7 @@ export class Character extends Document {
   description: string;
 
   @Prop()
-  thumbnail: Thumbnail<string, string>;
+  thumbnail?: Thumbnail<string, string>;
 }
 
 export const CharacterSchema = SchemaFactory.createForClass(Character);

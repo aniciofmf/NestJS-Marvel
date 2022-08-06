@@ -17,7 +17,7 @@ export class MarvelService {
   ) {}
 
   async create(createMarvelCharDto: CreateCharacterDto): Promise<Character> {
-    createMarvelCharDto.name = createMarvelCharDto.name.toLowerCase();
+    //   createMarvelCharDto.name = createMarvelCharDto.name.toLowerCase();
 
     try {
       const character = await this.characterModel.create(createMarvelCharDto);

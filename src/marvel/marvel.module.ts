@@ -15,5 +15,6 @@ import { Character, CharacterSchema } from './entities/character.entity';
       },
     ]),
   ],
+  exports: [MongooseModule],
 })
 export class MarvelModule {}

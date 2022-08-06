@@ -9,4 +9,7 @@ export class CreateCharacterDto {
   @IsString()
   @MinLength(2)
   name: string;
+
+  @IsString()
+  description: string;
 }
