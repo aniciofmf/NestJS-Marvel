@@ -1,17 +1,22 @@
 import { join } from 'path';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MarvelModule } from './marvel/marvel.module';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
+import { EnvConfig } from './config/app.config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      load: [EnvConfig],
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/marvel'),
+    MongooseModule.forRoot(process.env.MONGODB),
     MarvelModule,
     CommonModule,
     SeedModule,
